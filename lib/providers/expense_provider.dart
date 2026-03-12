@@ -22,7 +22,18 @@ class ExpenseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteExpense(String id) {}
+  // UPDATE
+  void updateExpense(String id, String title, double amount) {
+    final index = _expenses.indexWhere((e) => e.id == id);
+    if (index != -1) {
+      _expenses[index] = Expense(id: id, title: title, amount: amount);
+      notifyListeners();
+    }
+  }
 
-  void updateExpense(String id, String title, double amount) {}
+  // DELETE
+  void deleteExpense(String id) {
+    _expenses.removeWhere((e) => e.id == id);
+    notifyListeners();
+  }
 }

@@ -34,14 +34,17 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   void _save() {
     final title = _titleCtrl.text.trim();
     final amount = double.tryParse(_amountCtrl.text) ?? 0;
+
     if (title.isEmpty || amount <= 0) return;
 
     final provider = context.read<ExpenseProvider>();
+
     if (widget.expense == null) {
       provider.addExpense(title, amount);
     } else {
       provider.updateExpense(widget.expense!.id, title, amount);
     }
+
     Navigator.pop(context);
   }
 
@@ -57,11 +60,25 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                color: const Color(0xFF0D47A1).withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.receipt_long,
+                color: Color(0xFF0D47A1),
+                size: 34,
+              ),
+            ),
+            const SizedBox(height: 24),
             TextField(
               controller: _titleCtrl,
               decoration: const InputDecoration(
                 labelText: 'Title',
-                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.title, color: Color(0xFF0D47A1)),
               ),
             ),
             const SizedBox(height: 16),
@@ -69,16 +86,20 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               controller: _amountCtrl,
               decoration: const InputDecoration(
                 labelText: 'Amount (₱)',
-                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.payments, color: Color(0xFF0D47A1)),
               ),
               keyboardType: TextInputType.number,
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 28),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _save,
-                child: Text(isEditing ? 'Update' : 'Add'),
+                child: Text(
+                  isEditing ? 'Update Expense' : 'Add Expense',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],
