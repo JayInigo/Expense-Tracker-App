@@ -90,6 +90,25 @@ class HomeScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                IconButton(
+                                  icon: const Icon(Icons.edit_outlined,
+                                      color: Colors.black54),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            AddExpenseScreen(expense: expense),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.delete_outline,
+                                      color: Colors.black54),
+                                  onPressed: () =>
+                                      provider.deleteExpense(expense.id),
+                                ),
                               ],
                             ),
                           );

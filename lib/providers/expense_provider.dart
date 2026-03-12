@@ -21,4 +21,8 @@ class ExpenseProvider extends ChangeNotifier {
     ));
     notifyListeners();
   }
+
+  void deleteExpense(String id) {}
+
+  void updateExpense(String id, String title, double amount) {}
 }
