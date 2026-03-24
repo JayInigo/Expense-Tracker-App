@@ -3,9 +3,7 @@ import '../models/expense.dart';
 
 class ExpenseProvider extends ChangeNotifier {
   final List<Expense> _expenses = [
-    Expense(id: '1', title: 'Groceries', amount: 58.75),
-    Expense(id: '2', title: 'Uber Ride', amount: 12.50),
-    Expense(id: '3', title: 'Netflix', amount: 15.99),
+    Expense(id: '1', title: 'Bills', amount: 1250.75),
   ];
 
   List<Expense> get expenses => List.unmodifiable(_expenses);
